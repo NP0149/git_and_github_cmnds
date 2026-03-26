@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2>My Dashboard</h2>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<!-- Main Container -->
+<div class="container">
+
+    <!-- Welcome Section -->
+    <div class="card">
+        <h3>Welcome 👋</h3>
+        <p id="welcomeText">Hello, User!</p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="grid">
+
+        <div class="card">
+            <h3>📋 To-Do List</h3>
+            <p>Manage your daily tasks</p>
+            <button onclick="openTodo()">Open</button>
+        </div>
+
+        <div class="card">
+            <h3>👤 Profile</h3>
+            <p>View your profile details</p>
+            <button>View</button>
+        </div>
+
+        <div class="card">
+            <h3>⚙️ Settings</h3>
+            <p>Customize your experience</p>
+            <button>Open</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+// Example: get username from localStorage
+const username = localStorage.getItem("username") || "User";
+document.getElementById("welcomeText").innerText = "Hello, " + username + "!";
+
+// Logout function
+function logout() {
+    localStorage.clear();
+    window.location.href = "login.html";
+}
+
+// Dummy navigation
+function openTodo() {
+    alert("To-Do feature coming next 🚀");
+}
+</script>
+
+</body>
+</html>
