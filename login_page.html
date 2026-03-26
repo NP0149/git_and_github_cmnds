@@ -32,19 +32,68 @@
         button:hover {
             background-color: #45a049;
         }
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
 
 <div class="login-box">
     <h2>Login</h2>
-    <form action="#" method="post">
-        <input type="text" placeholder="Username" required><br>
-        <input type="password" placeholder="Password" required><br>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username"><br>
+        <div id="userError" class="error"></div>
+
+        <input type="password" id="password" placeholder="Password"><br>
+        <div id="passError" class="error"></div>
+
         <button type="submit">Login</button>
     </form>
 </div>
 
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let isValid = true;
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    const userError = document.getElementById("userError");
+    const passError = document.getElementById("passError");
+
+    userError.textContent = "";
+    passError.textContent = "";
+
+    // Username validation
+    if (username.length < 3) {
+        userError.textContent = "Username must be at least 3 characters";
+        isValid = false;
+    }
+
+    // Password validation
+    if (password.length < 6) {
+        passError.textContent = "Password must be at least 6 characters";
+        isValid = false;
+    } else if (!/[A-Z]/.test(password)) {
+        passError.textContent = "Password must contain at least one uppercase letter";
+        isValid = false;
+    } else if (!/[0-9]/.test(password)) {
+        passError.textContent = "Password must contain at least one number";
+        isValid = false;
+    }
+
+    // If valid → proceed
+    if (isValid) {
+        alert("Login successful (frontend validation passed)");
+        // Here you can call backend API later
+    }
+});
+</script>
+
 </body>
 </html>
-
